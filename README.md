@@ -1,8 +1,6 @@
 # Learning management system using Django and Bootstrap
 
-### I would love to see you contribute 👩‍💻👩‍💻, feel free to contribute and get awesome GitHub achievements :)
-### Demo video: https://youtu.be/KKIeRXwZ-Sw
-### Setup video: https://youtu.be/gMJfENDEyUs
+
 
 ![dj-lms-dashboard](https://user-images.githubusercontent.com/60693922/212262964-5b5f2cb9-59b6-4be8-bf29-63a5265a7a9e.png)
 
