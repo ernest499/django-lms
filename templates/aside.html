@@ -31,7 +31,11 @@
 		{% url 'add_score' as ascore %} {% url 'grade_results' as vr %}{% url 'ass_results' as ar %}
 		{% url 'course_registration' as cr %} {% url 'edit_profile' as ep %} {% url 'change_password' as cp %}
 		{% url 'quiz_progress' as qpr %} {% url 'quiz_marking' as qce %} {% url 'user_course_list' as ucl %}
-		{% url 'admin_panel' as admin_p %}
+		{% url 'admin_panel' as admin_p %}{% url 'mark-your-attendance-in' as attendin %}
+		{% url 'mark-your-attendance-out' as attendout %}{% url 'dashboard_recog' as recog %}
+		{% url 'view-my-attendance-employee-login' as my_attend %}{% url 'train' as train %}
+		{% url 'add-photos' as add_photos %}{% url 'view-attendance-employee' as view_employee %}
+
 		<ul>
 			<li class="{% if request.path == dash %}active{% endif %}">
 				<a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -53,6 +57,36 @@
 			<li class="{% if request.path == stu %}active{% endif %}">
 				<a href="{% url 'student_list' %}"><i class="fas fa-user-graduate"></i>Students</a>
 			</li>
+			<li class="{% if request.path == qpr %}active{% endif %}">
+				<a href="{% url 'quiz_progress' %}"><i class="fas fa-record-vinyl"></i>Quiz Progress Rec</a>
+			</li>
+			<li class="{% if request.path == cav %}active{% endif %}">
+				<a href="{% url 'course_allocation_view' %}"><i class="fas fa-tasks"></i>Course Allocation</a>
+			</li>
+			<li class="{% if request.path == sess %}active{% endif %}">
+				<a href="{% url 'session_list' %}"><i class="fas fa-calendar-week"></i>Manage Session</a>
+			</li>
+			<li class="{% if request.path == sem %}active{% endif %}">
+				<a href="{% url 'semester_list' %}"><i class="fas fa-calendar-alt"></i>Manage Semester</a>
+			</li>
+			<li class="{% if request.path == attendin %}active{% endif %}">
+				<a href="{% url 'mark-your-attendance-in' %}"><i class="fas fa-check-double"></i>Mark Attendance In</a>
+			</li>
+			<li class="{% if request.path == attendout %}active{% endif %}">
+				<a href="{% url 'mark-your-attendance-out' %}"><i class="fas fa-check-double"></i>Mark Attendance Out</a>
+			</li>
+			<li class="{% if request.path == my_attend %}active{% endif %}">
+				<a href="{% url 'view-my-attendance-employee-login' %}"><i class="fas fa-check-double"></i>View my Attendance</a>
+			</li>
+			<li class="{% if request.path == add_photos %}active{% endif %}">
+				<a href="{% url 'add-photos' %}"><i class="fas fa-check-double"></i>Add Photos</a>
+			</li>
+			<li class="{% if request.path == train %}active{% endif %}">
+				<a href="{% url 'train' %}"><i class="fas fa-check-double"></i>Train</a>
+			</li>
+			<li class="{% if request.path == view_employee %}active{% endif %}">
+				<a href="{% url 'view-attendance-employee' %}"><i class="fas fa-check-double"></i>View User Attendance</a>
+			</li>
 			{% endif %}
 
 			{% if request.user.is_lecturer or request.user.is_student %}
@@ -69,21 +103,21 @@
 			<li class="{% if request.path == qce %}active{% endif %}">
 				<a href="{% url 'quiz_marking' %}"><i class="fas fa-check-double"></i>Complete Exams</a>
 			</li>
+			
 			{% endif %}
 
-			{% if request.user.is_superuser %}
-			<li class="{% if request.path == qpr %}active{% endif %}">
-				<a href="{% url 'quiz_progress' %}"><i class="fas fa-record-vinyl"></i>Quiz Progress Rec</a>
+
+			{% if request.user.is_lecturer or request.user.is_student or request.is_superuser%}
+			<li class="{% if request.path == attendin %}active{% endif %}">
+				<a href="{% url 'mark-your-attendance-in' %}"><i class="fas fa-check-double"></i>Mark Attendance In</a>
 			</li>
-			<li class="{% if request.path == cav %}active{% endif %}">
-				<a href="{% url 'course_allocation_view' %}"><i class="fas fa-tasks"></i>Course Allocation</a>
+			<li class="{% if request.path == attendout %}active{% endif %}">
+				<a href="{% url 'mark-your-attendance-out' %}"><i class="fas fa-check-double"></i>Mark Attendance Out</a>
 			</li>
-			<li class="{% if request.path == sess %}active{% endif %}">
-				<a href="{% url 'session_list' %}"><i class="fas fa-calendar-week"></i>Manage Session</a>
+			<li class="{% if request.path == my_attend %}active{% endif %}">
+				<a href="{% url 'view-my-attendance-employee-login' %}"><i class="fas fa-check-double"></i>View my Attendance</a>
 			</li>
-			<li class="{% if request.path == sem %}active{% endif %}">
-				<a href="{% url 'semester_list' %}"><i class="fas fa-calendar-alt"></i>Manage Semester</a>
-			</li>
+
 			{% endif %}
 
 			{% if request.user.is_lecturer %}
@@ -104,7 +138,8 @@
 			</li>
 			<li class="{% if request.path == cr %}active{% endif %}">
 				<a href="{% url 'course_registration' %}"><i class="fas fa-plus"></i>Add & Drop Course</a>
-			</li>
+			</li>			
+			
 			{% endif %}
 			<br />
 			<p class="ml-3">&RightArrow; Others</p>
@@ -130,12 +165,12 @@
 		<div class="col-12">
 			<p class="small">
 				Read our <a href="#"> Privacy </a> · <a href="#"> Terms. </a>
-				CodeAdil Admin &copy;
+				ernesto proj;
 				<script>document.write(new Date().getFullYear());</script>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit.
 			</p>
-			<a href="https://adilmohak.github.io/adil" class="btn btn-sm btn-primary mx-auto" target="_blank">
-				CodeAdil
+			<a href="{% url 'attendance' %}" class="btn btn-sm btn-primary mx-auto" target="_blank">
+				Attendance
 			</a>
 		</div>
 	</footer>

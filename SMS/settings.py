@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cleanup',
+    'recognition',
+    
 ]
 
 # Thired party apps
@@ -61,7 +63,11 @@ INSTALLED_APPS += [
     'result.apps.ResultConfig',
     'search.apps.SearchConfig',
     'quiz.apps.QuizConfig',
-    'payments',
+    
+    #'users.apps.UsersConfig',
+    #'recognition.apps.RecognitionConfig',
+    #'payments',
+
 ]
 
 MIDDLEWARE = [
@@ -114,16 +120,25 @@ ASGI_APPLICATION = "SMS.asgi.application"
 
 # -----------------------------
 # Some model fields may not work on sqlite db, so configure your postgresql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env('DB_NAME'),
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'django_sms_data.sqlite3'),
+    }, 
 }
+
 
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

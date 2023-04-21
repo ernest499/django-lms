@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
-from .models import User, Student, Parent
+from .models import User, Student, Parent, Time, Present
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -24,5 +24,8 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Student)
 admin.site.register(Parent)
+admin.site.register(Present)
+admin.site.register(Time)
+
 
 # admin.site.unregister(Group)
